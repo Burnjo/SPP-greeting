@@ -3,26 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>영상 리스트</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <style>.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.card{padding:14px;border:1px solid #222;border-radius:10px}</style>
+  <title>영상 선택</title>
 </head>
 <body>
-  <main class="container">
-    <h1 class="title">영상 리스트(개발용)</h1>
-    <div id="grid" class="grid"></div>
-  </main>
-  <script>
-    fetch('data/videos.json').then(r=>r.json()).then(items=>{
-      const grid=document.getElementById('grid');
-      grid.innerHTML = items.map(it=>(
-        `<div class="card">
-          <div style="font-weight:600">${it.title||it.slug}</div>
-          <div style="color:#9aa0a6;font-size:13px;margin:4px 0">${it.src}</div>
-          <a href="watch.html?v=${encodeURIComponent(it.slug)}">재생 페이지 열기</a>
-        </div>`
-      )).join('');
-    });
-  </script>
+  <h1>영상 선택</h1>
+  <ul>
+    <li><a href="./watch.html?v=alpha">영상 A (alpha)</a></li>
+    <li><a href="./watch.html?v=beta">영상 B (beta)</a></li>
+    <li><a href="./watch.html?v=gamma">영상 C (gamma)</a></li>
+    <li><a href="./watch.html?v=delta">영상 D (delta)</a></li>
+    <li><a href="./watch.html?v=epsilon">영상 E (epsilon)</a></li>
+  </ul>
 </body>
 </html>
