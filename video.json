@@ -1,0 +1,36 @@
+[
+  {
+    "slug": "alpha",
+    "title": "영상 A",
+    "src": "videos/alpha.mp4",
+    "poster": "",
+    "caption": ""
+  },
+  {
+    "slug": "beta",
+    "title": "영상 B",
+    "src": "videos/beta.mp4",
+    "poster": "",
+    "caption": ""
+  },
+  {
+    "slug": "gamma",
+    "title": "영상 C",
+    "src": "videos/gamma.mp4",
+    "poster": "",
+    "caption": ""
+  },
+  {
+    "slug": "delta",
+    "title": "영상 D",
+    "src": "videos/delta.mp4",
+    "poster": "",
+    "caption": ""
+  },
+  {
+    "slug": "epsilon",
+    "title": "영상 E",
+    "src": "videos/epsilon.mp4",
+    "poster": ""
+  }
+]
