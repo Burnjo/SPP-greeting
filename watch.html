@@ -3,38 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>동영상 재생</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>영상 재생</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+    video { width: 100%; max-width: 960px; height: auto; background: #000; }
+    .msg { margin: 12px 0; }
+  </style>
 </head>
 <body>
-  <main class="container">
-    <h1 id="title" class="title">Loading…</h1>
+  <h1>영상 재생</h1>
+  <div class="msg" id="status"></div>
+  <video id="player" controls playsinline preload="metadata">
+    <!-- JS에서 src를 세팅합니다 -->
+    죄송합니다. 브라우저가 HTML5 비디오를 지원하지 않습니다.
+  </video>
 
-    <div class="player">
-      <video id="video"
-             controls
-             playsinline
-             preload="metadata"
-             poster=""
-             class="video">
-        <!-- src는 JS에서 설정 -->
-      </video>
+  <script>
+    // 1) URL 쿼리에서 v 값 읽기
+    const params = new URLSearchParams(location.search);
+    const key = (params.get('v') || '').toLowerCase();
 
-      <!-- 첫 진입 시 큰 재생 버튼 오버레이 (iOS/모바일 대비) -->
-      <button id="overlayPlay" class="overlay-play" aria-label="재생">
-        ▶︎ 탭하여 재생
-      </button>
-    </div>
+    // 2) key -> 실제 파일 매핑
+    //    필요한 만큼 추가/수정하세요.
+    const MAP = {
+      alpha:   'videos/alpha.mp4',
+      beta:    'videos/beta.mp4',
+      gamma:   'videos/gamma.mp4',
+      delta:   'videos/delta.mp4',
+      epsilon: 'videos/epsilon.mp4'
+    };
 
-    <div class="actions">
-      <a id="openDirect" href="#" target="_blank" rel="noopener">영상 새 탭에서 열기</a>
-    </div>
+    const status = document.getElementById('status');
+    const player = document.getElementById('player');
 
-    <p id="error" class="error" hidden>영상을 불러오지 못했습니다. URL을 확인해주세요.</p>
-  </main>
+    // 3) 매핑 결과로 src 지정
+    const src = MAP[key];
+    if (!src) {
+      status.textContent = '잘못된 요청입니다. (?v=alpha/beta/gamma/delta/epsilon 중 하나)';
+    } else {
+      status.textContent = `재생 중: ${key}`;
+      player.src = src;
 
-  <script src="assets/app.js"></script>
+      // 자동재생이 필요하면 아래 주석 해제 (모바일 정책상 음소거 필요)
+      // player.muted = true;
+      // player.autoplay = true;
+      // player.play().catch(()=>{ /* 자동재생 차단될 수 있음 */ });
+    }
+  </script>
 </body>
 </html>
-
-
