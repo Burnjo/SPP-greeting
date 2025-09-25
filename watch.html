@@ -107,6 +107,11 @@
     // 상태 텍스트 업데이트
     function setStatus(text) { status.textContent = text; }
 
+    // 재생/일시정지 이벤트에 맞춰 상태 안내
+    player.addEventListener('play',  () => setStatus("▶️ Now Playing"));
+    player.addEventListener('pause', () => setStatus("⏸️ Paused"));
+    player.addEventListener('ended', () => setStatus("✅ Finished"));
+
     // 음소거 토글 버튼 UI 업데이트
     function refreshMuteUI() {
       if (player.muted) {
@@ -132,7 +137,7 @@
       openInNew.style.display = 'none';
     } else {
       player.src = src;
-      setStatus(`재생 준비 완료: ${key}`);
+      setStatus("⌛ Ready");
 
       // 새 탭 링크
       const absolute = new URL(src, location.href).toString();
@@ -149,3 +154,4 @@
   </script>
 </body>
 </html>
+
